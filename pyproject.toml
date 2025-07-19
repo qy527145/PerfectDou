@@ -1,0 +1,88 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "perfectdou"
+version = "1.0.0"
+description = "PerfectDou: Dominating DouDizhu with Perfect Information Distillation - NeurIPS 2022"
+authors = [
+    "Guan Yang <yangguan@corp.netease.com>",
+    "Minghuan Liu <minghuanliu@sjtu.edu.cn>",
+    "Weijun Hong <hongweijun@corp.netease.com>",
+    "Weinan Zhang",
+    "Fei Fang",
+    "Guangjun Zeng <gzzengguangjun@corp.netease.com>",
+    "Yue Lin"
+]
+maintainers = [
+    "Guan Yang <yangguan@corp.netease.com>",
+    "Minghuan Liu <minghuanliu@sjtu.edu.cn>"
+]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
+repository = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
+documentation = "https://arxiv.org/abs/2203.16406"
+keywords = ["doudizhu", "ai", "reinforcement-learning", "perfect-information", "game-ai"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Games/Entertainment :: Board Games"
+]
+packages = [
+    {include = "perfectdou", from = "src"},
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.8"
+torch = ">=1.6.0"
+onnxruntime = "1.7.0"
+rlcard = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+black = "^22.0.0"
+flake8 = "^4.0.0"
+mypy = "^0.950"
+
+[tool.poetry.scripts]
+evaluate = "perfectdou.cli.evaluate:main"
+generate-eval = "perfectdou.cli.generate_eval_data:main"
+battle = "perfectdou.cli.battle_assistant:main"
+demo = "perfectdou.cli.demo_battle_assistant:main"
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
+priority = "primary"
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

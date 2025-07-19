@@ -1,9 +1,11 @@
-import os 
+import os
 import argparse
 
 from perfectdou.evaluation.simulation import evaluate
 
-if __name__ == '__main__':
+
+def main():
+    """主函数"""
     parser = argparse.ArgumentParser(
                     'Dou Dizhu Evaluation')
     parser.add_argument('--landlord', type=str,
@@ -26,3 +28,7 @@ if __name__ == '__main__':
              args.landlord_down,
              args.eval_data,
              args.num_workers)
+
+
+if __name__ == '__main__':
+    main()

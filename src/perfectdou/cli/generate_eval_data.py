@@ -27,7 +27,8 @@ def generate():
     return card_play_data
 
 
-if __name__ == '__main__':
+def main():
+    """主函数"""
     flags = get_parser().parse_args()
     output_pickle = flags.output + '.pkl'
 
@@ -41,6 +42,10 @@ if __name__ == '__main__':
     print("saving pickle file...")
     with open(output_pickle,'wb') as g:
         pickle.dump(data,g,pickle.HIGHEST_PROTOCOL)
+
+
+if __name__ == '__main__':
+    main()
 
 
 
