@@ -1,27 +1,29 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "perfectdou"
 version = "1.0.0"
 description = "PerfectDou: Dominating DouDizhu with Perfect Information Distillation - NeurIPS 2022"
 authors = [
-    {name = "Guan Yang", email = "yangguan@corp.netease.com"},
-    {name = "Minghuan Liu", email = "minghuanliu@sjtu.edu.cn"},
-    {name = "Weijun Hong", email = "hongweijun@corp.netease.com"},
-    {name = "Weinan Zhang"},
-    {name = "Fei Fang"},
-    {name = "Guangjun Zeng", email = "gzzengguangjun@corp.netease.com"},
-    {name = "Yue Lin"}
+    "Guan Yang <yangguan@corp.netease.com>",
+    "Minghuan Liu <minghuanliu@sjtu.edu.cn>",
+    "Weijun Hong <hongweijun@corp.netease.com>",
+    "Weinan Zhang",
+    "Fei Fang",
+    "Guangjun Zeng <gzzengguangjun@corp.netease.com>",
+    "Yue Lin"
 ]
 maintainers = [
-    {name = "Guan Yang", email = "yangguan@corp.netease.com"},
-    {name = "Minghuan Liu", email = "minghuanliu@sjtu.edu.cn"}
+    "Guan Yang <yangguan@corp.netease.com>",
+    "Minghuan Liu <minghuanliu@sjtu.edu.cn>"
 ]
-license = {text = "MIT"}
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.7,<3.8"
+homepage = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
+repository = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
+documentation = "https://arxiv.org/abs/2203.16406"
 keywords = ["doudizhu", "ai", "reinforcement-learning", "perfect-information", "game-ai"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -34,38 +36,32 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Games/Entertainment :: Board Games"
 ]
-dependencies = [
-    "torch>=1.6.0",
-    "onnxruntime==1.7.0",
-    "rlcard>=1.0.0,<2.0.0"
+packages = [
+    {include = "perfectdou", from = "src"},
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0.0,<8.0.0",
-    "black>=22.0.0,<23.0.0",
-    "flake8>=4.0.0,<5.0.0",
-    "mypy>=0.950,<1.0.0"
-]
+[tool.poetry.dependencies]
+python = ">=3.7,<3.8"
+torch = ">=1.6.0"
+onnxruntime = "1.7.0"
+rlcard = "^1.0.0"
 
-[project.scripts]
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+black = "^22.0.0"
+flake8 = "^4.0.0"
+mypy = "^0.950"
+
+[tool.poetry.scripts]
 evaluate = "perfectdou.cli.evaluate:main"
 generate-eval = "perfectdou.cli.generate_eval_data:main"
 battle = "perfectdou.cli.battle_assistant:main"
 demo = "perfectdou.cli.demo_battle_assistant:main"
 
-[project.urls]
-Homepage = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
-Repository = "https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou"
-Documentation = "https://arxiv.org/abs/2203.16406"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/perfectdou"]
-
-[[tool.uv.index]]
+[[tool.poetry.source]]
 name = "mirrors"
 url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
-default = true
+priority = "primary"
 
 [tool.black]
 line-length = 88

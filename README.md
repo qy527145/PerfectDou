@@ -45,32 +45,22 @@ PerfectDou 是目前最先进的[斗地主](https://baike.baidu.com/item/%E6%96%
 ```
 git clone https://github.com/Netease-Games-AI-Lab-Guangzhou/PerfectDou.git
 ```
-确保您已安装 Python 3.7，然后使用 uv 安装依赖：
+确保您已安装 Python 3.7，然后使用 Poetry 安装依赖：
 ```
 cd PerfectDou
-uv sync
+poetry install
 ```
 
-或者，如果您没有安装 uv，可以先安装 uv：
+或者，如果您没有安装 Poetry，可以先安装 Poetry：
 ```
-# Windows
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-# macOS/Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
+pip install poetry
 cd PerfectDou
-uv sync
-```
-
-如果您需要开发依赖（用于测试和代码格式化），请运行：
-```
-uv sync --extra dev
+poetry install
 ```
 
 ### 步骤 1：生成评估数据
 ```
-uv run generate-eval
+poetry run generate-eval
 ```
 一些重要的超参数如下：
 *   `--output`：保存序列化数据的位置
@@ -78,7 +68,7 @@ uv run generate-eval
 
 ### 步骤 2：自我对弈
 ```
-uv run evaluate
+poetry run evaluate
 ```
 一些重要的超参数如下：
 *   `--landlord`：哪个智能体将扮演地主，可以是 random、rlcard、douzero、perfectdou 或预训练模型的路径
@@ -89,7 +79,7 @@ uv run evaluate
 
 例如，以下命令评估 PerfectDou 在地主位置对抗 DouZero 智能体：
 ```
-uv run evaluate --landlord perfectdou --landlord_up douzero --landlord_down douzero
+poetry run evaluate --landlord perfectdou --landlord_up douzero --landlord_down douzero
 ```
 
 ## 🎮 实战助手功能
@@ -99,10 +89,10 @@ uv run evaluate --landlord perfectdou --landlord_up douzero --landlord_down douz
 ### 快速开始
 ```bash
 # 启动实战助手
-uv run battle
+poetry run battle
 
 # 或运行演示
-uv run demo
+poetry run demo
 ```
 
 ### 主要特性
@@ -138,10 +128,7 @@ uv run demo
 ### 功能测试
 ```bash
 # 运行功能测试
-uv run python tests/test_battle_assistant.py
-
-# 或运行所有测试
-uv run python -m pytest tests/ -v
+poetry run python tests/test_battle_assistant.py
 ```
 
 ### 📚 相关文档
